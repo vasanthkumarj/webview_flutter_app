@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Webview Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -70,8 +71,22 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context)=> AlertDialog(
           title: Text("Do you really want to exit?"),
           actions: <Widget>[
-            FlatButton(onPressed: ()=>Navigator.pop(context,false), child: Text("no")),
-            FlatButton(onPressed: ()=>Navigator.pop(context,true), child: Text("yes")),
+            FlatButton(onPressed: ()=>Navigator.pop(context,false), child: Text("No",style: TextStyle(
+                                                                                                     fontSize: 20.0,
+                                                                                                     color: Colors.black,
+                                                                                                     fontFamily: "Raleway",
+                                                                                                     fontWeight: FontWeight.w500
+                                                                                                      )
+                                                                                )
+                       ),
+            FlatButton(onPressed: ()=>Navigator.pop(context,true), child: Text("Yes",style: TextStyle(
+                                                                                                     fontSize: 20.0,
+                                                                                                     color: Colors.black,
+                                                                                                     fontFamily: "Raleway",
+                                                                                                     fontWeight: FontWeight.w600
+                                                                                                     )
+                                                                                )
+                       ),
           ],
         ));
   }
@@ -90,11 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return WillPopScope(child:  Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-        ),
         body: WebView(
           initialUrl: "https://www.google.com",
           javascriptMode: JavascriptMode.unrestricted,
